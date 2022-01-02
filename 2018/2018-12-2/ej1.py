@@ -1,12 +1,12 @@
 entrada = open("/etc/passwd", "r")
 
-nombre = []
+nombres = []
 
 for lineas in entrada:
     linea = lineas.split(":")
-    nombre.append(linea[4])
+    nombres.append(linea[4])
 
-print(nombre)
+for i in nombres:
+    print(i)
     
-
 entrada.close()
