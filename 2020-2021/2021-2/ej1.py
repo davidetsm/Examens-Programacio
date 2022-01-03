@@ -1,31 +1,26 @@
 def leeNotas():
-    try:
-        datos = open("C:/Users/david/OneDrive/Escritorio/Universitat/Primer/Primer Quatri/Fonaments de programació/Examens/2020-2021/2021-2/notas.dat", "r")
+    entrada = open("notas.dat", "r")
+    lineas = entrada.readlines()
+    entrada.close()
 
-        notas = []
-        for linea in datos:
-            notas.append([int(x) for x in linea.split()])
-        datos.close()
-        return datos
-    
-    except IOError:
-        return []
+    matriz = []
+    for i in range(len(lineas)):
+        fila = lineas[i].split()
+        matriz.append(fila)
+    return matriz
+
+matriz = leeNotas()
 
 def abandono(notasAlu):
-    if notasAlu[-1] != -1:
-        return None
-    for i in range(len(notasAlu)-1, -1, -1):
-        if notasAlu[i] != -1:
-            return i+1
-    return 0
-
-notas = leeNotas()
-semanaAbandono = [0]*len(notas[0])
-
-for alumno in notas:
-    semana = abandono(alumno)
-    if semana != None:
-        semanaAbandono[abandono(alumno)] += 1
-for i in len(semanaAbandono):
-    if semanaAbandono[i] != 0:
-        print("{}: {}".format(i, semanaAbandono[i]))
+    for i in range(len(notasAlu)):
+        if int(notasAlu[i]) == -1:
+            contador = i
+            return contador
+    return None
+matriz_semanas = []
+for i in range(len(matriz[0])):
+    matriz_semanas.append([])
+for i in range(len(matriz)):
+    if abandono(matriz[i]) != None:
+        matriz_semanas[abandono(matriz[i])].append(1)
+print(matriz_semanas)

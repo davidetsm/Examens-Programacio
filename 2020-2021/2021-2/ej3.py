@@ -1,14 +1,15 @@
-from scipy.integrate import odeint
-import numpy as np
+import numpy as np 
 import matplotlib.pyplot as plt
+from scipy.integrate import odeint
 
-def dydx(y, x):
-    return y/x - y**2
+def f(y, x):
+    return (y/x)-y**2
+
+y1 = 1
 
 x = np.linspace(1, 2, 100)
 
-y1 = 1.
-sol = odeint(dydx, y1, x)
+sol = odeint(f, y1, x)
 
 plt.plot(x, sol)
-plt.savefig("solucion.png")
+plt.show()
