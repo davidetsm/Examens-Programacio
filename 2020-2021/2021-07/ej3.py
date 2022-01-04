@@ -1,22 +1,22 @@
 from sys import argv
 
-if len(argv) == 2:
-    try:
-        entrada = open(argv[1], "r")
-        datos = [int(x) for x in entrada.readline().split()]
+entrada = open(argv[1], "r")
+entrada_lista = entrada.readlines()
+entrada.close()
+
+lista = entrada_lista[0].split()
+
+repetidos = []
+contadores = []
+
+for i in range(len(lista)):
+    contador = 0
+    if lista[i] not in repetidos:
+        repetidos.append(lista[i])
+        for j in range(len(lista)):
+            if lista[i] == lista[j]:
+                contador += 1
         
-        entrada.close()
+        contadores.append(contador)
 
-        maxFrec = datos.count(datos[0])
-        for i in range(1, len(datos)):
-            frecuencia = datos.count(datos[i])
-            if frec > maxFrec:
-                maxFrec = frec
-
-        print(maxFrec)
-
-    except IOError:
-        print("Error: no se puede abrir el archivo", argv[1])
-
-else:
-    print("Uso:", argv[0], "archivo_de_datos")
+print(max(contadores))
