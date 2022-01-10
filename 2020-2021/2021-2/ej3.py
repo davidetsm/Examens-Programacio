@@ -12,4 +12,6 @@ x = np.linspace(1, 2, 100)
 sol = odeint(f, y1, x)
 
 plt.plot(x, sol)
+plt.savefig("solucion.png")
+
 plt.show()

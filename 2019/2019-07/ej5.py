@@ -2,17 +2,17 @@ from scipy.integrate import quad
 import numpy as np 
 import matplotlib.pyplot as plt
 
-def funcion(t):
-    return t^(t-1)*np.exp^(-t)
+def Gamma():
+        sol, err = quad(funcion, 0, np.Inf)
+        return sol
 
-def Gamma(x):
-    sol, err = quad(funcion(x), 0, np.Infinity)
-    return sol
-
-x_ = np.linspace(1, 2, 100)
+x = np.linspace(1, 2, 100)
 y = []
-for i in x_:
-    y.append(Gamma(i))
+for i in x:
+    def funcion(t):
+        return t**(i-1)*np.e**(-t)
+    sol = Gamma()
+    y.append(sol)
 
-plt.plot(x_, y)
+plt.plot(x, y)
 plt.show()

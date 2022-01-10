@@ -1,27 +1,26 @@
-segundos = int(input("Introduce el número en segundos: "))
-while segundos < 0:
-    print("Error. Vuelve a introducir el dato: ", end = "")
-    segundos = int(input())
+tiempo = int(input("Introduce el número en segundos: "))
 
-if segundos % 60 == 0: #Vemos si el resto de pasar a minutos es 0
-    minutos = segundos / 60
-    segundos = 0
+while tiempo < 0:
+    tiempo = int(input("Error. Vuelve a introducir el dato: "))
+
+if tiempo >= 60:
+    minutos = tiempo // 60
+    segundos = tiempo % 60
+    if minutos >= 60:
+        horas = minutos // 60
+        minutos = minutos % 60
+        if horas >= 24:
+            dias = horas // 24
+            horas = horas % 24
+        else:
+            dias = 0
+    else:
+        horas = 0
+        dias = 0
 else:
-    minutos = segundos // 60
-    segundos = segundos % 60
-
-if minutos % 60 == 0:
-    horas = minutos / 60
+    segundos = tiempo
     minutos = 0
-else:
-    horas = minutos // 60
-    minutos = minutos % 60
-
-if horas % 24 == 0:
-    dias = horas / 24
     horas = 0
-else:
-    dias = horas // 24
-    horas = horas % 24
+    dias = 0
 
-print("{} días, {} horas, {} minutos y {} segundos.".format(int(dias), int(horas), int(minutos), int(segundos)))
+print("{} días, {} horas, {} minutos y {} segundos".format(dias, horas, minutos, segundos))

@@ -1,25 +1,16 @@
-import math
+import numpy as np 
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
 
-def funcion(x):
-    if x == 0:
-        return 1
-    return math.sin(x)/x
+def f(y, x):
+    return (1-(3*x)-(3*y))/(1 + x + y)
 
-n = 5
-def integral(n):
-    b = math.pi/2
-    a = math.pi/4
+y0 = 0
 
-    delta_x = (b-a)/n
-    suma = 0
-    for i in range(n):
-        suma += (funcion(i) + funcion(i+1))/2
-    return delta_x*suma
+x = np.linspace(0, 1, 100)
 
-error = 0.001
+sol = odeint(f, y0, x)
+print(sol)
 
-while integral(n+5) - integral(n) >= error:
-    n += 5
-
-print(n)
-print(integral(n))
+plt.plot(x, sol)
+plt.show()

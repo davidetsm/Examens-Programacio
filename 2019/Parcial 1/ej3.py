@@ -1,30 +1,15 @@
-def triangular(n):
+def triangular(M):
     matriz = []
-    for i in range(n):
-        fila = []
-        for j in range(n):
-            fila.append(0)
-        matriz.append(fila)
-
+    for i in range(M):
+        matriz.append([])
     contador = 1
-    for i in range(n):
-        matriz[0][i] = contador
-        contador += 1
-    iterador = 1
-    for i in range(1, n):
-        iterador = i
-        for j in range(iterador, n):
-            matriz[i][j] = contador
-            contador += 1
-            iterador += 1
+    for i in range(M):
+        for j in range(M):
+            if j >= i:
+                matriz[i].append(contador)
+                contador += 1
+            else:
+                matriz[i].append(0)
     return matriz
 
-def imprimirMatriz(matriz):
-    for i in range(len(matriz)):
-        fila = " ".join(str(x) for x in matriz[i])
-        print(fila)
-    return
-
-n = int(input())
-matriz = triangular(n)
-imprimirMatriz(matriz)
+print(triangular(4))
